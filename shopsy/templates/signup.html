@@ -1,0 +1,62 @@
+{% comment %} {% extends "base.html" %} {% block title %} sign-up-page {%
+endblock title %} {%block content %}
+<div class="container my-3">
+  <form action="#" method="post" style="width: 300px">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        placeholder="enter your first name"
+        name="fname"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput2"
+        placeholder="enter your last name"
+        name="lname"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        placeholder="enter your email"
+        name="email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput2"
+        placeholder="enter your Password"
+        name="pwd"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Mobile</label>
+      <input
+        type="number"
+        class="form-control"
+        id="formGroupExampleInput2"
+        placeholder="mobile"
+        name="mbl"
+      />
+    </div>
+    <div class="mb-3">
+      <input type="submit" class="form-control bg-primary" value="save" />
+    </div>
+  </form>
+</div>
+{% endblock content %} {% endcomment %}

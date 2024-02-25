@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart %}
+{% block title %}
+home-page
+{% endblock title %}
+{% block content %}
+<div class="container my-3">
+  <div class="row text-centre">
+    {% for cat in category_obj %}
+    <div class="col">
+      <a href="?cat_id={{cat.id}}">
+        <img src="{{cat.cat_image.url}}" alt="{{cat.cat_image.url}}" />
+        <br />
+        <h6>{{cat.cat_name}}</h6>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static "images/i4.webp" %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static "images/i5.webp" %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static "images/i6.webp" %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="container my-3">
+  <div class="row text-center">
+    {% for pro in product_obj %}
+    <div class="col me-3 mb-3">
+      <div class="card" style="width: 18rem">
+        <img src="{{pro.product_image.url}}" class="card-img-top" alt="..." width="250" height="250"/>
+        <div class="card-body">
+          <h5 class="card-title">{{pro.product_name}}</h5>
+          <h5 class="card-title">Rs.{{pro.product_price}}</h5>
+          <h5 class="card-text text-truncate">{{pro.product_desc}}</h5>
+           {% comment %} class="card-text text-truncate" id="{{pro.desc}}" data-bs-toggle="popover" data-bs-placement="right"data-bs-custom-class="custom-popover"data-bs-title="Custom popover" data-bs-content="{seguyste}">{{pro.product_desc}}</class=> {% endcomment %}
+        </div>
+        {% comment %} offcanvas for desc {% endcomment %}
+
+          {% comment %} <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="{{pro.id}}" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>{{pro.id}}</p>
+  </div>
+</div> {% endcomment %}
+        {% comment %} end offcanvas {% endcomment %}
+        <div class="card-footer text-body-secondary">
+          {% if pro|isexistincart:request.session.cart %}
+          <div class="row me-2">
+            <div class="col-2">
+              <form action="#" method="post">
+                {% csrf_token %}
+                <input type="text" name="product_id" value="{{pro.id}}" hidden />
+                <input type="text" name="remove" value="{{pro.id}}" hidden />
+                <input type="submit" class="btn btn-primary" value="-" />
+              </form>
+            </div>
+
+            <div class="col-8">
+                {{pro|cartquantity:request.session.cart}}
+            </div>
+            <div class="col-2">
+              <form action="#" method="post">
+                {% csrf_token %}
+                <input type="text" name="product_id" value="{{pro.id}}" hidden />
+                <input type="submit" class="btn btn-primary " value="+" />
+              </form>
+            </div>
+          </div>
+          {% else %}
+
+          <form action="#" method="post">
+            {% csrf_token %}
+            <input type="text" name="product_id" value={{pro.id}} hidden />
+            <input type="submit" class="btn btn-primary" value="Add to Cart" />
+          </form>
+          {% comment %} <button type="button" class="grid gap-2 col-6 mx-auto mt-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+          View Product
+        </button> {% endcomment %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% if error %}
+<script>
+  window.onload = function () {
+    var button = document.getElementById('a');
+    button.click();
+  }
+</script>
+{% elif error_message %}
+<script>
+  window.onload = function () {
+    var button = document.getElementById('b');
+    button.click();
+  }
+</script>
+{% endif %}
+{% comment %} <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button> {% endcomment %}
+
+{% comment %} <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel"><b>Product Details</b></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row text-center">
+      <div class="col me-3 mb-3">
+        <div class="card" style="width: 18rem">
+         <img src="{{product_image.url}}" class="card-img-top" alt="..." width="250" height="250" />
+            <div class="card-body">
+              <h5 class="card-title">{{product_name}}</h5>
+              <h5 class="card-title">Rs.{{product_price}}</h5>
+              <h5 class="card-tex">{{product_desc}}</h5>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% comment %} <script>
+  window.onload = function () {
+    var p =  document.getElementsByTagName('p');
+    for (var i = 0; i < p.length;i++) {
+      h = document.getElementById(p[i])
+      p[i].addEventListener('click',function(e) {
+       
+       console.log(p[i])
+        d = document.getElementById(p[i]);
+      console.log(d)
+      })
+
+    }
+  }
+</script> {% endcomment %}
+{% endblock content %}
