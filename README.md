@@ -1,0 +1,5 @@
+![Orders — Mozilla Firefox 25-Feb-24 12_37_52 PM](https://github.com/azeemkhan1311/shopshy/assets/146321080/a42e902d-2d58-4c0f-9902-cb7262985ea6)
+![Orders — Mozilla Firefox 25-Feb-24 12_38_04 PM](https://github.com/azeemkhan1311/shopshy/assets/146321080/dc05c773-c0a0-4797-8008-db39458ca64a)
+![Orders — Mozilla Firefox 25-Feb-24 12_38_13 PM](https://github.com/azeemkhan1311/shopshy/assets/146321080/79b9cbf7-4be5-41d8-b58f-a6b4b3ca1048)
+![Orders — Mozilla Firefox 25-Feb-24 12_47_17 PM](https://github.com/azeemkhan1311/shopshy/assets/146321080/87575b8e-ee33-45d0-b957-46d6d7515fa7)
+![Orders — Mozilla Firefox 25-Feb-24 12_39_58 PM](https://github.com/azeemkhan1311/shopshy/assets/146321080/4bebc54f-7f86-4c1b-913b-50f323914561)
